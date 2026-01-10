@@ -39,8 +39,9 @@ Det betyder:
 - [x] Websocket-url är konfigurerbar (ej hårdkodat localhost)
 
 ### Del 1.5: Persistens v0 (utan auth, låg friktion)
-- [ ] Save/load board state by `boardId` via Hocuspocus + Supabase (ingen auth än)
-- [ ] Dokumentera env + tabellkrav
+- [x] Implementerat: save/load board state by `boardId` via Hocuspocus + Supabase (ingen auth än)
+- [x] Dokumenterat: env + tabellkrav (SQL i `supabase/schema.sql`)
+- [ ] Verifierat: starta `npm run dev:yjs` med Supabase env och bekräfta att refresh laddar boarden
 
 ### Del 2: Proposal Mode på canvas (ghost-preview)
 - [ ] Proposal-state är lokal (inte Yjs)

@@ -116,6 +116,8 @@ const server = new Server({
             // Correctly encode the Y.Doc state as a single update binary
             const update = Y.encodeStateAsUpdate(data.document);
             const hexData = Buffer.from(update).toString('hex');
+            // Supabase/Postgres bytea commonly uses "\\x" prefixed hex strings
+            const byteaHex = `\\x${hexData}`;
 
             log(`📤 Storing binary update (length: ${update.length} bytes, hex length: ${hexData.length})`);
 
@@ -123,7 +125,7 @@ const server = new Server({
                 .from('documents')
                 .upsert({
                     name: data.documentName,
-                    data: hexData,
+                    data: byteaHex,
                     updated_at: new Date().toISOString()
                 }, { onConflict: 'name' });
 

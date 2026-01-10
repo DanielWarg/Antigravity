@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Antigravity är en **prompt-first collaborative canvas** (”Cursor för Miro”): du skriver på svenska i en chatt och AI föreslår **validerade board-events** som du kan **Apply/Discard**. Boarden synkas i realtid via **Yjs + Hocuspocus**.
 
-## Getting Started
+## Kom igång
 
-First, run the development server:
+### 1) Installera
+
+```bash
+npm install
+```
+
+### 2) Starta appen
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Öppna `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3) Starta realtids-servern (Hocuspocus)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+I en separat terminal:
 
-## Learn More
+```bash
+npm run dev:yjs
+```
 
-To learn more about Next.js, take a look at the following resources:
+Default kör den på port `1234`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Konfiguration (env)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Skapa `.env.local` (commit:as inte).
 
-## Deploy on Vercel
+### Realtid (klient → Hocuspocus)
+- `NEXT_PUBLIC_HOCUSPOCUS_URL` (eller `NEXT_PUBLIC_YJS_URL`): t.ex. `ws://localhost:1234`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### AI (valfritt)
+- `OPENAI_API_KEY`: om saknas kör `/api/ai` i mock-mode.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Supabase (persistens v0 i Hocuspocus-servern)
+Realtids-servern (`scripts/server.js`) kan spara/ladda boards till Supabase-tabellen `documents`.
+
+Kräver:
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY` (server-side, commit:as aldrig)
+
+SQL-schema finns i `supabase/schema.sql`.
+
+Verifiera Supabase snabbt:
+```bash
+node scripts/verify-supabase.js
+```

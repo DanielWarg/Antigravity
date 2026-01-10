@@ -7,6 +7,11 @@ console.log('--- Verifying Supabase Connection & Table ---');
 
 // Load env
 const envPath = path.resolve(__dirname, '../.env.local');
+if (!fs.existsSync(envPath)) {
+    console.error('Missing .env.local. Create it first (see README).');
+    process.exit(1);
+}
+
 const config = dotenv.parse(fs.readFileSync(envPath));
 const url = config.NEXT_PUBLIC_SUPABASE_URL;
 const key = config.SUPABASE_SERVICE_ROLE_KEY;
@@ -25,7 +30,7 @@ async function test() {
         .from('documents')
         .upsert({
             name: 'verify_script_test',
-            data: Buffer.from('test_data').toString('hex'), // Match server.js logic
+            data: `\\x${Buffer.from('test_data').toString('hex')}`, // Match server.js logic (bytea hex)
         })
         .select();
 
