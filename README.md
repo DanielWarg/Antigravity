@@ -49,3 +49,22 @@ Verifiera Supabase snabbt:
 ```bash
 node scripts/verify-supabase.js
 ```
+
+## GitHub/Vercel: manuell checklista (engångssetup)
+
+### 1) Vercel Git Integration
+- Importera repo:t i Vercel (New Project → Import Git Repository).
+- Vercel sköter:
+  - Preview deploys på PR
+  - Production deploy på `main`
+
+### 2) GitHub Branch Protection (när CI har kört minst en gång)
+GitHub visar **No required checks** tills workflowet har körts minst en gång.
+
+När du ser checken i listan, gå till `Settings → Branches` (ruleset/branch protection för `main`) och slå på:
+- Require a pull request before merging
+- Require approvals: 1
+- Require status checks to pass: **CI / checks**
+- Require conversation resolution
+- Block force pushes
+- Require linear history

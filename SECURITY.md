@@ -44,8 +44,7 @@
 - `documents` (persistens v0) är server-only: klienten ska inte skriva direkt.
 
 ## Dependency/security hygiene
-- Dependabot uppdaterar npm + GitHub Actions veckovis.
-- CodeQL körs på PR/push och schemalagt.
+- Dependabot uppdaterar npm veckovis (PRs, ingen automerge).
 
 ## Incident basics
 - Rotera `SUPABASE_SERVICE_ROLE_KEY` och `OPENAI_API_KEY` vid läcka.

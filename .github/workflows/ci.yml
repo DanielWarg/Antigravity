@@ -19,17 +19,19 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: lts/*
+          node-version: 20
           cache: npm
       - name: Install
         run: npm ci
       - name: Lint
-        run: npm run lint
+        run: npm run lint --if-present
       - name: Typecheck
-        run: npm run typecheck
+        run: npm run typecheck --if-present
+      - name: Test
+        run: npm test --if-present
       - name: Build
-        run: npm run build
-
-  e2e:
-    needs: checks
-    uses: ./.github/workflows/playwright.yml
+        run: npm run build --if-present
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+      - name: E2E (Playwright)
+        run: npm run test:e2e --if-present

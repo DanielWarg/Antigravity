@@ -2,13 +2,12 @@
 
 ## CI (GitHub Actions)
 Workflows:
-- `.github/workflows/ci.yml`: lint + typecheck + build + e2e (Playwright)
-- `.github/workflows/codeql.yml`: CodeQL scanning
-- `.github/dependabot.yml`: Dependabot (npm + GitHub Actions)
+- `.github/workflows/ci.yml`: install + lint + typecheck + (test) + build + e2e (Playwright)
+- `.github/dependabot.yml`: Dependabot (npm, weekly)
+- `.github/CODEOWNERS`: code owner för repo:t
 
 Status checks att använda i branch protection:
-- **CI**
-- **CodeQL**
+- **CI / checks**
 
 ## Branch protection (rekommendationer)
 På `main`:
@@ -19,18 +18,11 @@ På `main`:
 - Restrict force pushes
 
 ## Deploy: staging/prod (Vercel)
-Workflows:
-- `.github/workflows/deploy-staging.yml`: auto på push till `main` (environment: `staging`)
-- `.github/workflows/deploy-prod.yml`: manuell (workflow_dispatch) (environment: `production`)
+Vi använder **Vercel Git Integration**:
+- Preview deploys på PR
+- Production deploy på `main`
 
-### Required GitHub Secrets (Actions)
-- `VERCEL_TOKEN`
-- `VERCEL_ORG_ID`
-- `VERCEL_PROJECT_ID`
-
-Rekommendation:
-- Skapa GitHub Environments `staging` och `production`.
-- Lägg “required reviewers” på `production` environment för manuell gate.
+Ingen Vercel CLI i GitHub Actions och inga Vercel-secrets krävs i Actions.
 
 ## Observability: logging + Sentry
 ### Logging (baseline)
@@ -44,7 +36,7 @@ Minimal env:
 Om ni vill automatisera releases/sourcemaps:
 - `SENTRY_AUTH_TOKEN`
 
-Not: Aktivera Sentry först när ni bestämmer om ni vill lägga in `@sentry/nextjs` (paket + config). För MVP räcker ofta bra server-logging och Playwright + CodeQL.
+Not: Aktivera Sentry först när ni bestämmer om ni vill lägga in `@sentry/nextjs` (paket + config). För MVP räcker ofta bra server-logging och Playwright.
 
 ## Runtime checklist
 - App: `npm run dev`
