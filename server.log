@@ -1,0 +1,141 @@
+[2026-01-10T18:17:11.032Z] Hocuspocus server listening on port 1234
+[2026-01-10T18:17:11.033Z] ✅ Persistence enabled (Supabase)
+[2026-01-10T18:17:12.403Z] 🔌 onConnect: persistence-final-v3
+[2026-01-10T18:17:12.407Z] 📥 onLoadDocument: persistence-final-v3
+[2026-01-10T18:17:12.463Z] 🔌 onConnect: persistence-final-v3
+[2026-01-10T18:17:13.155Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:17:23.323Z] 🔌 onConnect: persistence-final-v4
+[2026-01-10T18:17:23.324Z] 📥 onLoadDocument: persistence-final-v4
+[2026-01-10T18:17:23.435Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:18:11.272Z] ❌ onDisconnect: persistence-final-v4
+[2026-01-10T18:18:11.486Z] 🔌 onConnect: persistence-final-v4
+[2026-01-10T18:18:11.486Z] 📥 onLoadDocument: persistence-final-v4
+[2026-01-10T18:18:11.609Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:19:26.330Z] ❌ onDisconnect: persistence-final-v4
+[2026-01-10T18:19:26.621Z] 🔌 onConnect: persistence-final-v4
+[2026-01-10T18:19:26.621Z] 📥 onLoadDocument: persistence-final-v4
+[2026-01-10T18:19:26.814Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:20:40.194Z] ❌ onDisconnect: persistence-final-v4
+[2026-01-10T18:20:40.386Z] 🔌 onConnect: persistence-final-v4
+[2026-01-10T18:20:40.387Z] 📥 onLoadDocument: persistence-final-v4
+[2026-01-10T18:20:40.507Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:21:07.575Z] ❌ onDisconnect: persistence-final-v3
+[2026-01-10T18:21:07.575Z] ❌ onDisconnect: persistence-final-v3
+[2026-01-10T18:21:07.575Z] ❌ onDisconnect: persistence-final-v4
+[2026-01-10T18:21:07.890Z] Hocuspocus server listening on port 1234
+[2026-01-10T18:21:07.891Z] ✅ Persistence enabled (Supabase)
+[2026-01-10T18:21:08.585Z] 🔌 onConnect: persistence-final-v4
+[2026-01-10T18:21:08.586Z] 📥 onLoadDocument: persistence-final-v4
+[2026-01-10T18:21:08.608Z] 🔌 onConnect: persistence-final-v3
+[2026-01-10T18:21:08.608Z] 📥 onLoadDocument: persistence-final-v3
+[2026-01-10T18:21:08.621Z] 🔌 onConnect: persistence-final-v3
+[2026-01-10T18:21:08.746Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:21:08.821Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:21:09.362Z] ❌ onDisconnect: persistence-final-v4
+[2026-01-10T18:21:09.363Z] ❌ onDisconnect: persistence-final-v3
+[2026-01-10T18:21:09.391Z] ❌ onDisconnect: persistence-final-v3
+[2026-01-10T18:21:09.757Z] 🔌 onConnect: persistence-final-v4
+[2026-01-10T18:21:09.758Z] 📥 onLoadDocument: persistence-final-v4
+[2026-01-10T18:21:09.826Z] 🔌 onConnect: persistence-final-v3
+[2026-01-10T18:21:09.827Z] 📥 onLoadDocument: persistence-final-v3
+[2026-01-10T18:21:09.879Z] 🔌 onConnect: persistence-final-v3
+[2026-01-10T18:21:09.895Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:21:09.917Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:21:20.157Z] 🔌 onConnect: persistence-final-v5
+[2026-01-10T18:21:20.158Z] 📥 onLoadDocument: persistence-final-v5
+[2026-01-10T18:21:20.280Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:22:51.079Z] 🔌 onConnect: persistence-final-v6
+[2026-01-10T18:22:51.079Z] 📥 onLoadDocument: persistence-final-v6
+[2026-01-10T18:22:51.557Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:25:06.558Z] 🔌 onConnect: persistence-final-v6
+[2026-01-10T18:26:44.981Z] 🔌 onConnect: persistence-final-v7
+[2026-01-10T18:26:44.982Z] 📥 onLoadDocument: persistence-final-v7
+[2026-01-10T18:26:45.333Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:27:52.652Z] ❌ onDisconnect: persistence-final-v3
+[2026-01-10T18:27:52.653Z] ❌ onDisconnect: persistence-final-v3
+[2026-01-10T18:27:52.653Z] ❌ onDisconnect: persistence-final-v4
+[2026-01-10T18:27:52.653Z] ❌ onDisconnect: persistence-final-v5
+[2026-01-10T18:27:52.653Z] ❌ onDisconnect: persistence-final-v6
+[2026-01-10T18:27:52.653Z] ❌ onDisconnect: persistence-final-v6
+[2026-01-10T18:27:52.653Z] ❌ onDisconnect: persistence-final-v7
+[2026-01-10T18:33:47.786Z] Hocuspocus server listening on port 1234
+[2026-01-10T18:33:47.787Z] ✅ Persistence enabled (Supabase)
+[2026-01-10T18:34:10.053Z] 🔌 onConnect: persistence-final-v7
+[2026-01-10T18:34:10.054Z] 📥 onLoadDocument: persistence-final-v7
+[2026-01-10T18:34:10.414Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:34:20.532Z] 🔌 onConnect: persistence-final-v9
+[2026-01-10T18:34:20.533Z] 📥 onLoadDocument: persistence-final-v9
+[2026-01-10T18:34:20.703Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:34:50.595Z] ❌ onDisconnect: persistence-final-v9
+[2026-01-10T18:34:50.740Z] 🔌 onConnect: persistence-final-v9
+[2026-01-10T18:34:50.742Z] 📥 onLoadDocument: persistence-final-v9
+[2026-01-10T18:34:50.907Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:35:31.201Z] ❌ onDisconnect: persistence-final-v9
+[2026-01-10T18:35:31.345Z] 🔌 onConnect: persistence-final-v9
+[2026-01-10T18:35:31.346Z] 📥 onLoadDocument: persistence-final-v9
+[2026-01-10T18:35:31.520Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:36:08.153Z] ❌ onDisconnect: persistence-final-v9
+[2026-01-10T18:36:08.289Z] 🔌 onConnect: persistence-final-v9
+[2026-01-10T18:36:08.290Z] 📥 onLoadDocument: persistence-final-v9
+[2026-01-10T18:36:08.519Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:37:07.860Z] ❌ onDisconnect: persistence-final-v9
+[2026-01-10T18:37:07.860Z] ❌ onDisconnect: persistence-final-v7
+[2026-01-10T18:37:07.875Z] 🔌 onConnect: persistence-final-v9
+[2026-01-10T18:37:07.875Z] 📥 onLoadDocument: persistence-final-v9
+[2026-01-10T18:37:07.883Z] 🔌 onConnect: persistence-final-v7
+[2026-01-10T18:37:07.884Z] 📥 onLoadDocument: persistence-final-v7
+[2026-01-10T18:37:08.040Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:37:08.050Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:37:17.318Z] ❌ onDisconnect: persistence-final-v9
+[2026-01-10T18:37:17.319Z] ❌ onDisconnect: persistence-final-v7
+[2026-01-10T18:37:17.581Z] Hocuspocus server listening on port 1234
+[2026-01-10T18:37:17.582Z] ✅ Persistence enabled (Supabase)
+[2026-01-10T18:37:18.332Z] 🔌 onConnect: persistence-final-v7
+[2026-01-10T18:37:18.333Z] 📥 onLoadDocument: persistence-final-v7
+[2026-01-10T18:37:18.357Z] 🔌 onConnect: persistence-final-v9
+[2026-01-10T18:37:18.358Z] 📥 onLoadDocument: persistence-final-v9
+[2026-01-10T18:37:18.473Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:37:18.478Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:37:18.821Z] ❌ onDisconnect: persistence-final-v7
+[2026-01-10T18:37:18.822Z] ❌ onDisconnect: persistence-final-v9
+[2026-01-10T18:37:18.988Z] 🔌 onConnect: persistence-final-v9
+[2026-01-10T18:37:18.989Z] 📥 onLoadDocument: persistence-final-v9
+[2026-01-10T18:37:19.015Z] 🔌 onConnect: persistence-final-v7
+[2026-01-10T18:37:19.016Z] 📥 onLoadDocument: persistence-final-v7
+[2026-01-10T18:37:19.069Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:37:19.101Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:37:50.359Z] ❌ onDisconnect: persistence-final-v9
+[2026-01-10T18:37:50.359Z] ❌ onDisconnect: persistence-final-v7
+[2026-01-10T18:37:50.385Z] 🔌 onConnect: persistence-final-v9
+[2026-01-10T18:37:50.387Z] 📥 onLoadDocument: persistence-final-v9
+[2026-01-10T18:37:50.389Z] 🔌 onConnect: persistence-final-v7
+[2026-01-10T18:37:50.390Z] 📥 onLoadDocument: persistence-final-v7
+[2026-01-10T18:37:50.526Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:37:50.529Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:38:00.674Z] 🔌 onConnect: persistence-final-v10
+[2026-01-10T18:38:00.674Z] 📥 onLoadDocument: persistence-final-v10
+[2026-01-10T18:38:00.871Z] ℹ️ Document not found (fresh start)
+[2026-01-10T18:49:27.982Z] 💾 onStoreDocument: persistence-final-v10
+[2026-01-10T18:49:27.986Z] 📤 Storing binary update (length: 1348 bytes, hex length: 2696)
+[2026-01-10T18:49:28.384Z] ✅ Document saved successfully
+[2026-01-10T18:50:15.484Z] 💾 onStoreDocument: persistence-final-v10
+[2026-01-10T18:50:15.486Z] 📤 Storing binary update (length: 1380 bytes, hex length: 2760)
+[2026-01-10T18:50:15.633Z] ✅ Document saved successfully
+[2026-01-10T18:50:19.907Z] 💾 onStoreDocument: persistence-final-v10
+[2026-01-10T18:50:19.908Z] 📤 Storing binary update (length: 1380 bytes, hex length: 2760)
+[2026-01-10T18:50:20.027Z] ✅ Document saved successfully
+[2026-01-10T18:52:06.461Z] 💾 onStoreDocument: persistence-final-v10
+[2026-01-10T18:52:06.463Z] 📤 Storing binary update (length: 2174 bytes, hex length: 4348)
+[2026-01-10T18:52:06.712Z] ✅ Document saved successfully
+[2026-01-10T18:52:15.204Z] 💾 onStoreDocument: persistence-final-v10
+[2026-01-10T18:52:15.205Z] 📤 Storing binary update (length: 2292 bytes, hex length: 4584)
+[2026-01-10T18:52:15.325Z] ✅ Document saved successfully
+[2026-01-10T18:52:30.466Z] 💾 onStoreDocument: persistence-final-v10
+[2026-01-10T18:52:30.468Z] 📤 Storing binary update (length: 2326 bytes, hex length: 4652)
+[2026-01-10T18:52:30.575Z] ✅ Document saved successfully
+[2026-01-10T18:52:39.316Z] 💾 onStoreDocument: persistence-final-v10
+[2026-01-10T18:52:39.317Z] 📤 Storing binary update (length: 2398 bytes, hex length: 4796)
+[2026-01-10T18:52:39.426Z] ✅ Document saved successfully
+[2026-01-10T18:52:44.359Z] ❌ onDisconnect: persistence-final-v7
+[2026-01-10T18:52:45.035Z] ❌ onDisconnect: persistence-final-v9
+[2026-01-10T18:52:52.594Z] ❌ onDisconnect: persistence-final-v10
