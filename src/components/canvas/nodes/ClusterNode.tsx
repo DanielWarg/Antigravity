@@ -2,9 +2,9 @@
 
 import { memo } from 'react';
 import { Handle, Position } from '@xyflow/react';
-import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 
-const ClusterNode = memo(({ data, selected }: { data: any, selected?: boolean }) => {
+const ClusterNode = memo(({ data, selected }: { data: unknown; selected?: boolean }) => {
+    const safeData = (data ?? {}) as { label?: string; color?: string };
     return (
         <>
             {/* Transparent handles for connections */}
@@ -16,12 +16,12 @@ const ClusterNode = memo(({ data, selected }: { data: any, selected?: boolean })
                 <div
                     className="min-w-[400px] min-h-[400px] border-2 border-dashed border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 rounded-xl p-4 flex flex-col"
                     style={{
-                        backgroundColor: data.color ? `${data.color}20` : undefined,
-                        borderColor: data.color || undefined
+                        backgroundColor: safeData.color ? `${safeData.color}20` : undefined,
+                        borderColor: safeData.color || undefined
                     }}
                 >
                     <div className="font-semibold text-lg text-slate-700 dark:text-slate-200 mb-2">
-                        {data.label}
+                        {safeData.label}
                     </div>
                     {/* Content area that visually groups items beneath it */}
                 </div>

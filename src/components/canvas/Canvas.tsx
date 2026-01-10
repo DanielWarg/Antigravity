@@ -5,11 +5,15 @@ import {
     Background,
     Controls,
     MiniMap,
-    NodeTypes
+    NodeTypes,
+    type Node,
+    type Edge,
+    type OnNodesChange,
+    type OnEdgesChange,
+    type OnConnect,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { useMemo } from 'react';
-import { useBoardStore } from '@/lib/store/useBoardStore';
 
 import NoteNode from './nodes/NoteNode';
 import DecisionNode from './nodes/DecisionNode';
@@ -17,11 +21,11 @@ import ActionNode from './nodes/ActionNode';
 import ClusterNode from './nodes/ClusterNode';
 
 interface CanvasProps {
-    nodes: any[];
-    edges: any[];
-    onNodesChange: any;
-    onEdgesChange: any;
-    onConnect: any;
+    nodes: Node[];
+    edges: Edge[];
+    onNodesChange: OnNodesChange;
+    onEdgesChange: OnEdgesChange;
+    onConnect: OnConnect;
 }
 
 export function Canvas({ nodes, edges, onNodesChange, onEdgesChange, onConnect }: CanvasProps) {
