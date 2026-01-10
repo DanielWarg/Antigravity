@@ -9,6 +9,9 @@ test('smoke test - homepage loads', async ({ page }) => {
     // Check for the description text
     await expect(page.getByText('Prompt-first collaborative canvas.')).toBeVisible();
 
-    // Check that the "New Board" button works (or at least exists)
-    await expect(page.getByRole('link', { name: 'New Board' }).first()).toBeVisible();
+    // Check that the "New Board" button exists and navigates
+    const newBoard = page.getByRole('button', { name: 'New Board', exact: true });
+    await expect(newBoard).toBeVisible();
+    await newBoard.click();
+    await expect(page).toHaveURL(/\/board\/.+/);
 });
