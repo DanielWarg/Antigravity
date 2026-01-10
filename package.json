@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
     "dev:yjs": "node scripts/server.js",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui"

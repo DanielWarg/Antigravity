@@ -2,16 +2,66 @@ import { openai } from '@ai-sdk/openai';
 import { generateObject } from 'ai';
 import { BoardEventSchema } from '@/lib/schema';
 
+type RateLimitState = { count: number; resetAtMs: number };
+
+function getClientIp(req: Request): string {
+    const xff = req.headers.get('x-forwarded-for');
+    if (xff) return xff.split(',')[0].trim();
+    return req.headers.get('x-real-ip') || 'unknown';
+}
+
+function checkRateLimit(key: string, limitPerMinute: number): { ok: true } | { ok: false; retryAfterSeconds: number } {
+    const now = Date.now();
+    const windowMs = 60_000;
+
+    const g = globalThis as unknown as { __aiRateLimit?: Map<string, RateLimitState> };
+    if (!g.__aiRateLimit) g.__aiRateLimit = new Map();
+    const store = g.__aiRateLimit;
+
+    const current = store.get(key);
+    if (!current || now >= current.resetAtMs) {
+        store.set(key, { count: 1, resetAtMs: now + windowMs });
+        return { ok: true };
+    }
+
+    if (current.count >= limitPerMinute) {
+        return { ok: false, retryAfterSeconds: Math.max(1, Math.ceil((current.resetAtMs - now) / 1000)) };
+    }
+
+    current.count += 1;
+    store.set(key, current);
+    return { ok: true };
+}
+
 export async function POST(req: Request) {
-    const { messages, boardContext } = await req.json();
-    const lastMessage = messages[messages.length - 1].content;
+    const limit = Number(process.env.AI_RATE_LIMIT_PER_MINUTE || '30');
+    const ip = getClientIp(req);
+    const rl = checkRateLimit(`ai:${ip}`, Number.isFinite(limit) ? limit : 30);
+    if (!rl.ok) {
+        return new Response(JSON.stringify({ error: 'Rate limit exceeded' }), {
+            status: 429,
+            headers: {
+                'Content-Type': 'application/json',
+                'Retry-After': String(rl.retryAfterSeconds),
+            },
+        });
+    }
+
+    const body = await req.json().catch(() => null);
+    const messages = body?.messages;
+    const boardContext = body?.boardContext;
+    const lastMessage = Array.isArray(messages) && messages.length > 0 ? messages[messages.length - 1]?.content : '';
+
+    if (!Array.isArray(messages) || typeof lastMessage !== 'string') {
+        return Response.json({ error: 'Invalid request body' }, { status: 400 });
+    }
 
     // Fallback if no API key is set
     if (!process.env.OPENAI_API_KEY) {
         console.log('No OpenAI API key found, returning mock response for testing.');
 
         // Simple mock logic for testing without API key
-        const mockEvents = [];
+        const mockEvents: any[] = [];
         if (lastMessage.toLowerCase().includes('skapa')) {
             mockEvents.push({
                 type: 'CREATE_NODE',
@@ -25,10 +75,17 @@ export async function POST(req: Request) {
             });
         }
 
-        return Response.json({
+        const candidate = {
             reply: "OBS: Kör i mock-mode (ingen API-nyckel). Jag hörde att du ville skapa något!",
             events: mockEvents
-        });
+        };
+
+        const parsed = BoardEventSchema.safeParse(candidate);
+        if (!parsed.success) {
+            return Response.json({ error: 'Mock response failed schema validation', details: parsed.error.flatten() }, { status: 500 });
+        }
+
+        return Response.json(parsed.data);
     }
 
     try {
@@ -63,7 +120,13 @@ export async function POST(req: Request) {
             messages: messages,
         });
 
-        return Response.json(object);
+        // Defensive: validate AI output server-side even if the SDK claims it matches
+        const parsed = BoardEventSchema.safeParse(object);
+        if (!parsed.success) {
+            return Response.json({ error: 'AI response failed schema validation', details: parsed.error.flatten() }, { status: 502 });
+        }
+
+        return Response.json(parsed.data);
     } catch (error) {
         console.error('AI Error:', error);
         return Response.json({
