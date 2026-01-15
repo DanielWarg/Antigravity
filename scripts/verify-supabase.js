@@ -5,16 +5,26 @@ const path = require('path');
 
 console.log('--- Verifying Supabase Connection & Table ---');
 
-// Load env
-const envPath = path.resolve(__dirname, '../.env.local');
-if (!fs.existsSync(envPath)) {
-    console.error('Missing .env.local. Create it first (see README).');
-    process.exit(1);
-}
+// Load env from both .env and .env.local (same logic as server.js)
+const envPaths = [
+    path.resolve(__dirname, '../.env'),
+    path.resolve(__dirname, '../.env.local')
+];
 
-const config = dotenv.parse(fs.readFileSync(envPath));
-const url = config.NEXT_PUBLIC_SUPABASE_URL;
-const key = config.SUPABASE_SERVICE_ROLE_KEY;
+envPaths.forEach(envPath => {
+    if (fs.existsSync(envPath)) {
+        const envConfig = dotenv.parse(fs.readFileSync(envPath));
+        for (const k in envConfig) {
+            // Only set if value is not empty (avoid overwriting with empty strings)
+            if (envConfig[k]) {
+                process.env[k] = envConfig[k];
+            }
+        }
+    }
+});
+
+const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 if (!url || !key) {
     console.error('Missing URL or Key in .env.local');

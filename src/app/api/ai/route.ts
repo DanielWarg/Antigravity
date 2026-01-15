@@ -69,8 +69,17 @@ export async function POST(req: Request) {
                 payload: {
                     id: `node-${Date.now()}`,
                     type: 'note',
-                    position: { x: Math.random() * 400, y: Math.random() * 400 },
-                    data: { label: lastMessage.replace('skapa', '').trim() || 'Ny notering' }
+                    position: { x: Math.random() * 400 + 50, y: Math.random() * 400 + 50 },
+                    data: {
+                        label: lastMessage.replace(/skapa/i, '').trim() || 'Ny notering',
+                        color: null,
+                        owner: null,
+                        status: null,
+                    },
+                    // Edge props (null for nodes)
+                    source: null,
+                    target: null,
+                    label: null,
                 }
             });
         }

@@ -22,18 +22,8 @@ envPaths.forEach(envPath => {
     if (fs.existsSync(envPath)) {
         const envConfig = dotenv.parse(fs.readFileSync(envPath));
         for (const k in envConfig) {
-            // Special handling for Service Role Key: only overwrite if new value looks valid (starts with eyJ)
-            // or if we don't have a valid value yet.
-            if (k === 'SUPABASE_SERVICE_ROLE_KEY') {
-                const newValue = envConfig[k];
-                const currentValue = process.env[k];
-                const newIsValid = newValue && newValue.startsWith('eyJ');
-                const currentIsValid = currentValue && currentValue.startsWith('eyJ');
-
-                if (newIsValid || !currentIsValid) {
-                    process.env[k] = newValue;
-                }
-            } else {
+            // Only set if value is not empty (avoid overwriting with empty strings)
+            if (envConfig[k]) {
                 process.env[k] = envConfig[k];
             }
         }
@@ -71,7 +61,7 @@ const server = new Server({
     async onLoadDocument(data) {
         if (!supabase) {
             log('⚠️ No Supabase client, skipping load');
-            return null;
+            return;
         }
 
         log(`📥 onLoadDocument: ${data.documentName}`);
@@ -89,7 +79,7 @@ const server = new Server({
                 } else {
                     log('ℹ️ Document not found (fresh start)');
                 }
-                return null;
+                return;
             }
 
             if (doc && doc.data) {
@@ -98,13 +88,15 @@ const server = new Server({
                 if (typeof hexString === 'string' && hexString.startsWith('\\x')) {
                     hexString = hexString.slice(2);
                 }
-                return new Uint8Array(Buffer.from(hexString, 'hex'));
+                const update = new Uint8Array(Buffer.from(hexString, 'hex'));
+
+                // Apply the update to the server's Y.Doc
+                Y.applyUpdate(data.document, update);
+                log(`✅ Applied update to document. Nodes map size: ${data.document.getMap('nodes').size}`);
             }
         } catch (e) {
             log(`❌ Exception in onLoadDocument: ${e.message}`);
         }
-
-        return null;
     },
 
     async onStoreDocument(data) {

@@ -31,14 +31,7 @@ type BoardState = {
 };
 
 export const useBoardStore = create<BoardState>((set, get) => ({
-    nodes: [
-        {
-            id: '1',
-            position: { x: 100, y: 100 },
-            data: { label: 'Starta här! Skriv i chatten för att bygga.' },
-            type: 'note'
-        },
-    ],
+    nodes: [],
     edges: [],
     yDoc: null,
     setYDoc: (yDoc) => set({ yDoc }),

@@ -36,11 +36,28 @@ export function CollaborativeCanvas({ roomId }: { roomId: string }) {
                 console.log('📡 Hocuspocus: Synced');
                 const yNodes = doc.getMap('nodes');
                 const yEdges = doc.getMap('edges');
+                console.log('📡 yNodes size:', yNodes.size, 'keys:', Array.from(yNodes.keys()));
+                console.log('📡 yEdges size:', yEdges.size);
                 const initialNodes = Array.from(yNodes.values()) as any[];
                 const initialEdges = Array.from(yEdges.values()) as any[];
 
-                if (initialNodes.length > 0) setNodes(initialNodes);
-                if (initialEdges.length > 0) setEdges(initialEdges);
+                // If document is empty, seed it with a welcome node (written to Yjs so it persists)
+                if (initialNodes.length === 0) {
+                    console.log('📡 Empty doc, seeding welcome node');
+                    const welcomeNode = {
+                        id: 'welcome-1',
+                        position: { x: 100, y: 100 },
+                        data: { label: 'Starta här! Skriv i chatten för att bygga.' },
+                        type: 'note'
+                    };
+                    doc.transact(() => {
+                        yNodes.set(welcomeNode.id, welcomeNode);
+                    }, 'seed');
+                    setNodes([welcomeNode]);
+                } else {
+                    setNodes(initialNodes);
+                }
+                setEdges(initialEdges);
             },
             onStatus({ status }) {
                 console.log(`📡 Hocuspocus Status: ${status}`);
@@ -53,8 +70,9 @@ export function CollaborativeCanvas({ roomId }: { roomId: string }) {
 
         // Sync remote updates
         doc.on('update', (update, origin) => {
-            if (origin !== 'local' && origin !== provider) {
-                const newNodes = Array.from(yNodes.values()) as any[];
+            // We tag local mutations with origin 'local'. Everything else should update the UI.
+            if (origin !== 'local') {
+                const newNodes = Array.from(doc.getMap('nodes').values()) as any[];
                 const newEdges = Array.from(doc.getMap('edges').values()) as any[];
                 setNodes(newNodes);
                 setEdges(newEdges);
